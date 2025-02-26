@@ -71,6 +71,19 @@ pipeline {
                 }
             }
         }
+        //  Push to Docker Hub
+        stage('Push to Docker Hub') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', passwordVariable: 'DOCKER_TOKEN', usernameVariable: 'DOCKER_USERNAME')]) {
+                    script {
+                        sh """
+                        echo $DOCKER_TOKEN | sudo docker login -u $DOCKER_USERNAME --password-stdin
+                        sudo docker push $IMAGE_NAME
+                        """
+                    }
+                }
+            }
+        }
 
 
 
