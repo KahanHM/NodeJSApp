@@ -100,7 +100,7 @@ pipeline {
                 if (dockerInstalled != 0) { // If Docker is NOT installed
                     echo 'Docker is not installed, installing Docker on EC2...'
                     sh '''
-                    ssh -o StrictHostKeyChecking=no -i ${SSH_KEY} ${USER}@${ServerIP} << 'EOF'
+                    ssh -o StrictHostKeyChecking=no -i ${SSH_KEY} ${USER}@${ServerIP} <<EOF
                         sudo apt-get update
                         sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
                         curl -fsSL "https://download.docker.com/linux/ubuntu/gpg" | sudo apt-key add -
@@ -136,7 +136,7 @@ stage('Install Docker Compose on EC2') {
                 if (dockerComposeInstalled != 0) {
                     echo 'Docker Compose is not installed, installing Docker Compose on EC2...'
                     sh '''
-                    ssh -o StrictHostKeyChecking=no -i ${SSH_KEY} ${USER}@${ServerIP} << 'EOF'
+                    ssh -o StrictHostKeyChecking=no -i ${SSH_KEY} ${USER}@${ServerIP} <<EOF
                     sudo curl -L "https://github.com/docker/compose/releases/download/$(curl -s https://api.github.com/repos/docker/compose/releases/latest | jq -r .tag_name)/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
                     sudo chmod +x /usr/local/bin/docker-compose
                     EOF
