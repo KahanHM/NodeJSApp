@@ -157,7 +157,7 @@ stage('Copy The Docker Compose file') {
             script {
                         echo 'Copying docker-compose.yml to EC2 instance...'
                         sh """
-                        scp -o StrictHostKeyChecking=no -i ${SSH_KEY} ${WORKSPACE}/docker-compose.yml ${USER}@${ServerIP}:/home/ubuntu/NodeJSApp
+                        scp -o StrictHostKeyChecking=no -i ${SSH_KEY} ${WORKSPACE}/docker-compose.yml ${USER}@${ServerIP}:/home/ubuntu/NodeJSApp/docker-compose.yml
                         """
 
                         echo 'Deploying application with Docker Compose...'
