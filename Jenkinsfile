@@ -164,7 +164,8 @@ stage('Copy The Docker Compose file') {
                         sh """
                         ssh -o StrictHostKeyChecking=no -i ${SSH_KEY} ${USER}@${ServerIP} <<EOF
                         cd /home/ubuntu/NodeJSApp
-                        sudo docker-compose up -d
+                        docker-compose build
+                        docker-compose up -d
                         """
             }
         }
