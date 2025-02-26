@@ -1,0 +1,16 @@
+{
+  "name": "node-mongo-app",
+  "version": "1.0.0",
+  "description": "A Node.js app with MongoDB container to store user details",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.13.5"
+  },
+  "author": "KahanHM",
+  "license": "MIT"
+}
