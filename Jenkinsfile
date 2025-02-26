@@ -4,18 +4,6 @@ pipeline {
         IMAGE_NAME = 'kahanhm/mongonodeapi'
     }
     stages {
-        
-        // test
-        stage('test') {
-            steps {
-                script {
-                    echo 'test'
-                    sh '
-                    ls -la
-                    '
-                }
-            }
-        }
         // Clone or Pull Repo
         stage('Clone or Pull Repo') {
             steps {
