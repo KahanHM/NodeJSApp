@@ -148,6 +148,29 @@ stage('Install Docker Compose on EC2') {
         }
     }
 }
+stage('Copy The Docker Compose file') {
+    steps {
+        withCredentials([
+            sshUserPrivateKey(credentialsId: 'Server', keyFileVariable: 'SSH_KEY', usernameVariable: 'USER'),
+            string(credentialsId: 'ServerIP', variable: 'ServerIP')
+        ]) {
+            script {
+                        echo 'Copying docker-compose.yml to EC2 instance...'
+                        sh """
+                        scp -o StrictHostKeyChecking=no -i ${SSH_KEY} ${WORKSPACE}/docker-compose.yml ${USER}@${ServerIP}:/home/ubuntu/NodeJSApp
+                        """
+
+                        echo 'Deploying application with Docker Compose...'
+                        sh """
+                        ssh -o StrictHostKeyChecking=no -i ${SSH_KEY} ${USER}@${ServerIP} <<EOF
+                        cd /home/ubuntu/NodeJSApp
+                        sudo docker-compose up -d
+                        EOF
+                        """
+            }
+        }
+    }
+}
 
 
 
