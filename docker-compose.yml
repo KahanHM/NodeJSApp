@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  app:
+    image: kahanhm/mongonodeapi:latest
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://mongo_db:27017/node-mongo-app
+      - PORT=3000
+
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo_db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
