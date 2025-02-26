@@ -59,6 +59,18 @@ pipeline {
                 }
             }
         }
+        // Build Docker image
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    echo 'Building Docker Image...'
+                    sh '''
+                    cd NodeJSApp
+                     docker build -t $IMAGE_NAME .
+                    '''
+                }
+            }
+        }
 
 
 
