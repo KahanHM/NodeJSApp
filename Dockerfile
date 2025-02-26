@@ -12,7 +12,6 @@ WORKDIR /usr/src/app
 COPY --from=builder /usr/src/app/node_modules ./node_modules
 COPY --from=builder /usr/src/app/package*.json ./
 COPY --from=builder /usr/src/app/index.js .
-COPY --from=builder /usr/src/app/printFolderStructure.js .
 COPY --from=builder /usr/src/app/models ./models
 COPY --from=builder /usr/src/app/routes ./routes
 COPY --from=builder /usr/src/app/.env .env
