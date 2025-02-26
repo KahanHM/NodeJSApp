@@ -24,11 +24,17 @@ pipeline {
         stage('Create .env File') {
             steps {
                 script {
-                    echo 'Creating .env file...'
+                    if (fileExists('NodeJSApp/.env')) {
+                        echo '.env available'
+                        
+                    } else {
+                        echo 'Creating .env file...'
                     sh '''
                     echo "MONGO_URI=mongodb://localhost:27017/mydb" > NodeJSApp/.env
                     echo "PORT=5000" >> NodeJSApp/.env
                     '''
+                }
+                    
                 }
             }
         }
