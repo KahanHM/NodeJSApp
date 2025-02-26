@@ -39,13 +39,6 @@ docker run --name mongo -d -p 27017:27017 mongo
 npm start
 ```
 
-### Start the client
-
-```sh
-cd client
-npm start
-```
-
 ## API Endpoints
 
 - `POST /api/users` - Create a new user.
